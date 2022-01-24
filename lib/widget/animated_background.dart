@@ -63,7 +63,7 @@ class BottomWaveClipper extends CustomClipper<Path> {
   Path getClip(Size size) {
     var path = new Path();
 
-    path.lineTo(0.0, 40.0);
+    path.lineTo(0.0, 40.20);
     path.lineTo(0.0, size.height);
     path.lineTo(size.width, size.height);
     path.lineTo(size.width, 40.0);
