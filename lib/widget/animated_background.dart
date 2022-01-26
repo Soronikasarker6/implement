@@ -144,7 +144,6 @@ class _MyAnimationState extends State<MyAnimation>
           animation
       )
         ),
-
       ],);
     // return
   }
