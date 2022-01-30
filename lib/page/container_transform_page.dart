@@ -1,10 +1,9 @@
 import 'package:animations/animations.dart';
-
 import 'package:implement/screen/favourite_items.dart';
 import 'package:implement/screen/search.dart';
 import 'package:implement/screen/user_profile.dart';
 import 'package:implement/widget/card_widget.dart';
-import 'package:implement/widget/custom_fab_widget.dart';
+import 'package:implement/widget/`feedback.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -187,14 +186,13 @@ class _ContainerTransformPageState extends State<ContainerTransformPage> {
         ),),
 
       bottomNavigationBar:
-      CurvedNavigationBar
-        (
+      CurvedNavigationBar(
         buttonBackgroundColor: Color(0xff355B60),
         backgroundColor: Color(0xFFDDC2A2),
         height: 60, index: _selectedIndex,
         onTap: onTapped, items: items,
       ),
-      floatingActionButton:   CustomFABWidget(transitionType: transitionType),
+      floatingActionButton:   CustomFABWidget(),
     );
   }
 }

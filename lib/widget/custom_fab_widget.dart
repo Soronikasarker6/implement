@@ -3,7 +3,7 @@ import 'package:implement/page/details_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-const double fabSize = 30;
+const double fabSize = 60;
 
 class CustomFABWidget extends StatelessWidget {
   final ContainerTransitionType transitionType;
@@ -22,11 +22,11 @@ class CustomFABWidget extends StatelessWidget {
         closedBuilder: (context, openContainer) => Container(
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: Theme.of(context).primaryColor,
+            color: Colors.pink,
           ),
           height: fabSize,
           width: fabSize,
-          child: Icon(Icons.remove_red_eye, color: Colors.white),
+          child: Icon(Icons.message_rounded, color: Colors.black, size: 30.0,),
         ),
       );
 }

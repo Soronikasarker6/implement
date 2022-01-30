@@ -5,19 +5,32 @@ import 'package:particles_flutter/particles_flutter.dart';
 import 'package:flutter_particle_background/flutter_particle_background.dart';
 import 'package:wave/wave.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class WaveDemoHomePage extends StatefulWidget {
   @override
   _WaveDemoHomePageState createState() => _WaveDemoHomePageState();
 }
 
-class _WaveDemoHomePageState extends State<WaveDemoHomePage> {
+class _WaveDemoHomePageState extends State<WaveDemoHomePage> with SingleTickerProviderStateMixin{
+Animation animation;
+AnimationController animationController;
+void initState(){
+  animationController = AnimationController(vsync: this,
+    duration: Duration(seconds: 2),  )..forward();
 
+  animation = CurvedAnimation(parent: animationController,
+   curve: Curves.easeInQuad);
+
+}
+void dispose(){
+animationController.dispose();
+super.dispose();
+}
   _buildCard({
      Config config,
     Color backgroundColor = Colors.transparent,
      DecorationImage backgroundImage,
-
   })
   {
     return Container(
@@ -32,7 +45,6 @@ class _WaveDemoHomePageState extends State<WaveDemoHomePage> {
       ),
     );
   }
-
   MaskFilter _blur;
   final List<MaskFilter> _blurs = [
     MaskFilter.blur(BlurStyle.normal, 10.0),
@@ -131,14 +143,19 @@ class _WaveDemoHomePageState extends State<WaveDemoHomePage> {
                   Expanded(
                     flex: 2,
                     child: Container(
-                        decoration:BoxDecoration(
-                          shape: BoxShape.rectangle,
-                            image: DecorationImage(
-                                image: NetworkImage(
-                                    "https://www.northeastern.edu/graduate/blog/wp-content/"
-                                        "uploads/2021/03/Leadership-and-Professional-Success.jpg")
-                            )
-                        )
+                      child: Align(
+                        heightFactor: 1,
+                        widthFactor: 0.5,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(15.0),
+                          child: SizeTransition(
+                            sizeFactor: animation,
+                            child: Image(
+                              image: NetworkImage('https://images.mid-day.com/images/images/2018/apr/Handshake.jpg'),
+                            ),
+                             ),
+                        ),
+                      )
                     ),
                   ),
                    SizedBox(width: 10.0,),
@@ -173,8 +190,6 @@ class _WaveDemoHomePageState extends State<WaveDemoHomePage> {
               ),
             ),
           ),
-
-
         ]
       ),
     );
